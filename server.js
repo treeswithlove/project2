@@ -33,6 +33,6 @@ app.get('/way', (req, res) => {
 
 //ALWAYS AT BOTTOM OF FILE
 const PORT = 3000;
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log("server has started");
 });
