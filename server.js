@@ -17,7 +17,16 @@ app.use(express.urlencoded());
 app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
-  res.render("index/index")
+  res.render("index")
+});
+app.get('/user', (req, res) => {
+  res.render("user")
+});
+app.get('/ways', (req, res) => {
+  res.render("ways")
+});
+app.get('/way', (req, res) => {
+  res.render("way")
 });
 
 
