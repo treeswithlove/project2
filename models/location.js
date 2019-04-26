@@ -10,4 +10,4 @@ const LocationSchema = new Schema({
 
 const LocationModel = mongoose.model('Location', LocationSchema)
 
-module.exports = LocationModel
+module.exports = {LocationModel}
