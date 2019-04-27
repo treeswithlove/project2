@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override');
+// const logger = require('morgan')
 const UserRoutes = require('./routes/user')
 
 //sets up hbs
