@@ -1,6 +1,3 @@
-//next steps: switch from user to location in the functions
-
-
 //user model
 const LocationModel = require('../models/schema')
 
@@ -10,34 +7,34 @@ const LocationController = {
     //finds all location 
         index: function(req, res){
             LocationModel.LocationModel.find().then(location => {
-                res.render('location/index', {user})
+                res.render('location/index', {location})
                 // res.json(user)
             })
         },
-    //goes to create new user route
+    //goes to create new location route
         new: function(req, res){
             res.render('location/new')
         },
-    //creates new user
+    //creates new location
         create: function(req,res){
             // LocationModel.create(req.body)
-            const newUser = (req.body)
-            LocationModel.LocationModel.create(newUser)
-            .then((user) => {
-                res.json(user)
+            const newLocation = (req.body)
+            LocationModel.LocationModel.create(newLocation)
+            .then((location) => {
+                res.json(location)
             })
             // .then(() => res.redirect("/"))
         },
-    //show one user by id
+    //show one location by id
         show: function(req,res){
-            LocationModel.LocationModel.findById(req.params.userId)
+            LocationModel.LocationModel.findById(req.params.locationId)
             // .then((user) => res.render('location/show', {
             //     user
             // })).catch(error => {
             //     console.log(error)
             // })
-            .then((user) => {
-                res.json(user)
+            .then((location) => {
+                res.json(location)
             })
         },
         // // //find one user by id and edit user
@@ -45,16 +42,16 @@ const LocationController = {
         //     LocationModel.LocationModel.findById(req.params.userId)
         //         .then((user => res.render('location/edit', {user}))).catch(error => console.log(error))
         // },
-        // //update one user by id
+        // //update one location by id
         update: function(req,res){
-            LocationModel.LocationModel.findByIdAndUpdate(req.params.userId, req.body).then(() => {
+            LocationModel.LocationModel.findByIdAndUpdate(req.params.locationId, req.body).then(() => {
                 res.send()
             })
         },
-        // //find user by id and remove user
+        // //find location by id and remove location
         delete: function(req,res){
-            LocationModel.LocationModel.findByIdAndDelete(req.params.userId).then((user) => {
-                res.json(user)
+            LocationModel.LocationModel.findByIdAndDelete(req.params.locationId).then((location) => {
+                res.json(location)
                 // res.redirect('/location').catch((error) => {
                 //     console.log(error)
                 // })
