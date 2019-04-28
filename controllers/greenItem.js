@@ -1,64 +1,68 @@
-// //user model
-// const UserModel = require('../models/schema')
+//GreenItem model
+const Models = require('../models/schema')
 
 
-// //user controller
-// const UserController = {
-//     //finds all users 
-//         index: function(req, res){
-//             UserModel.UserModel.find().then(user => {
-//                 res.render('user/index', {user})
-//                 // res.json(user)
-//             })
-//         },
-//     //goes to create new user route
-//         new: function(req, res){
-//             res.render('user/new')
-//         },
-//     //creates new user
-//         create: function(req,res){
-//             // UserModel.create(req.body)
-//             const newUser = (req.body)
-//             UserModel.UserModel.create(newUser)
-//             .then((user) => {
-//                 res.json(user)
-//             })
-//             // .then(() => res.redirect("/"))
-//         },
-//     //show one user by id
-//         show: function(req,res){
-//             UserModel.UserModel.findById(req.params.userId)
-//             // .then((user) => res.render('user/show', {
-//             //     user
-//             // })).catch(error => {
-//             //     console.log(error)
-//             // })
-//             .then((user) => {
-//                 res.json(user)
-//             })
-//         },
-//         // //find one user by id and edit user
-//         edit: function(req,res){
-//             UserModel.UserModel.findById(req.params.userId)
-//                 .then((user => res.render('user/edit', {user}))).catch(error => console.log(error))
-//         },
-//         // //update one user by id
-//         update: function(req,res){
-//             UserModel.UserModel.findByIdAndUpdate(req.params.userId, req.body).then(() => {
-//                 res.send()
-//             })
-//         },
-//         // //find user by id and remove user
-//         delete: function(req,res){
-//             UserModel.UserModel.findByIdAndDelete(req.params.userId).then((user) => {
-//                 res.json(user)
-//                 // res.redirect('/users').catch((error) => {
-//                 //     console.log(error)
-//                 // })
-//             })
-//         }
+//GreenItem controller
+const GreenItemController = {
+    //finds all GreenItems 
+        index: function(req, res){
+            const userId = req.params.userId;
+            Models.UserModel.find(userId).then(user => {
+            //     // res.render('greenItem/index', {greenItem})
+                res.json(user)
+            })
+        },
+    //goes to create new GreenItem route
+        new: function(req, res){
+            res.render('greenItem/new')
+            // res.json()
+        },
+    //creates new GreenItem
+        create: function(req,res){
+            const userId = req.params.userId;
+            const newGreenItem = (req.body)
+            Models.UserModels.findById(userId)
+            .then((user) => {
+                user.where.push(newGreenItem)
+            })
+            .then((user) => {
+                 res.redirect(`/user/${userId}`)
+            })
+        },
+    //show one GreenItem by id
+        show: function(req,res){
+            Models.GreenItemModel.findById(req.params.greenItemId)
+            // .then((greenItem) => res.render('greenItem/show', {
+            //     greenItem
+            // })).catch(error => {
+            //     console.log(error)
+            // })
+            .then((greenItem) => {
+                res.json(greenItem)
+            })
+        },
+        // //find one GreenItem by id and edit GreenItem
+        edit: function(req,res){
+            Models.GreenItemModel.findById(req.params.greenItemId)
+                .then((greenItem => res.render('greenItem/edit', {greenItem}))).catch(error => console.log(error))
+        },
+        // //update one GreenItem by id
+        update: function(req,res){
+            Models.GreenItemModel.findByIdAndUpdate(req.params.greenItemId, req.body).then(() => {
+                res.json(req.body)
+            })
+        },
+        // //find GreenItem by id and remove GreenItem
+        delete: function(req,res){
+            Models.GreenItemModel.findByIdAndDelete(req.params.greenItemId).then((greenItem) => {
+                res.json(greenItem)
+                // res.redirect('/greenItems').catch((error) => {
+                //     console.log(error)
+                // })
+            })
+        }
      
-//     }
+    }
 
 
-// module.exports = UserController
+module.exports = GreenItemController

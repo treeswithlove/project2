@@ -7,8 +7,8 @@ const UserController = {
     //finds all users 
         index: function(req, res){
             UserModel.UserModel.find().then(user => {
-                res.render('user/index', {user})
-                // res.json(user)
+                // res.render('user/index', {user})
+                res.json(user)
             })
         },
     //goes to create new user route
