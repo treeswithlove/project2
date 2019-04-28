@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const methodOverride = require('method-override');
 // const logger = require('morgan')
-const UserRoutes = require('./routes/user')
+const Routes = require('./routes/routes')
 
 //sets up hbs
 app.set('view engine', 'hbs');
@@ -13,7 +13,8 @@ app.use(express.static(__dirname+"/public"));
 app.use(express.urlencoded());
 app.use(express.json())
 app.use(methodOverride('_method'))
-app.use('/api/user', UserRoutes)
+app.use('/api/user', Routes)
+
 
 
 //ALWAYS AT BOTTOM OF FILE

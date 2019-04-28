@@ -7,13 +7,13 @@ const UserController = {
     //finds all users 
         index: function(req, res){
             UserModel.UserModel.find().then(user => {
-                res.render('users/index', {user})
+                res.render('user/index', {user})
                 // res.json(user)
             })
         },
     //goes to create new user route
         new: function(req, res){
-            res.render('users/new')
+            res.render('user/new')
         },
     //creates new user
         create: function(req,res){
@@ -28,7 +28,7 @@ const UserController = {
     //show one user by id
         show: function(req,res){
             UserModel.UserModel.findById(req.params.userId)
-            // .then((user) => res.render('users/show', {
+            // .then((user) => res.render('user/show', {
             //     user
             // })).catch(error => {
             //     console.log(error)
@@ -40,12 +40,12 @@ const UserController = {
         // //find one user by id and edit user
         edit: function(req,res){
             UserModel.UserModel.findById(req.params.userId)
-                .then((user => res.render('users/edit', {user}))).catch(error => console.log(error))
+                .then((user => res.render('user/edit', {user}))).catch(error => console.log(error))
         },
         // //update one user by id
         update: function(req,res){
-            UserModel.UserModel.findByIdAndUpdate(req.params.userId, req.body, {new:true}).then(() => {
-                res.redirect('/' + req.params.userId)
+            UserModel.UserModel.findByIdAndUpdate(req.params.userId, req.body).then(() => {
+                res.send()
             })
         },
         // //find user by id and remove user
@@ -59,8 +59,6 @@ const UserController = {
         }
      
     }
-
-
 
 
 module.exports = UserController
