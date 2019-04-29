@@ -1,14 +1,17 @@
 //GreenItem model
 const Models = require('../models/schema')
+const UserModel = require('../models/schema')
+
 
 
 //GreenItem controller
 const GreenItemController = {
     //finds all GreenItems 
         index: function(req, res){
-            const userId = req.params.userId;
-            Models.UserModel.find(userId).then(user => {
+            Models.UserModel.findById(req.params.userId)
             //     // res.render('greenItem/index', {greenItem})
+            // })
+            .then((user) => {
                 res.json(user)
             })
         },
