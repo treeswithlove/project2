@@ -1,12 +1,12 @@
 //user model
-const UserModel = require('../models/schema')
+const Models = require('../models/schema')
 
 
 //user controller
 const UserController = {
     //finds all users 
         index: function(req, res){
-            UserModel.UserModel.find().then(user => {
+            Models.UserModel.find().then(user => {
                 // res.render('user/index', {user})
                 res.json(user)
             })
@@ -17,17 +17,25 @@ const UserController = {
         },
     //creates new user
         create: function(req,res){
-            // UserModel.create(req.body)
-            const newUser = (req.body)
-            UserModel.UserModel.create(newUser)
-            .then((user) => {
-                res.json(user)
+            const newUser = req.body;
+            Models.UserModel.create(newUser => {
+                Promise.all(Models.GreenItemModel.find(), 
+                Models.GreenItemModel.map(green) => {
+
+                })
             })
+            // UserModel.create(req.body)
+            // const newUser = (req.body)
+            // Models.UserModel.create(newUser)
+            // .then((newUser) => {
+                // Promise.all
+                // res.json(newUser)
+            // })
             // .then(() => res.redirect("/"))
         },
     //show one user by id
         show: function(req,res){
-            UserModel.UserModel.findById(req.params.userId)
+            Models.UserModel.findById(req.params.userId)
             // .then((user) => res.render('user/show', {
             //     user
             // })).catch(error => {
@@ -39,18 +47,18 @@ const UserController = {
         },
         // //find one user by id and edit user
         edit: function(req,res){
-            UserModel.UserModel.findById(req.params.userId)
+            Models.UserModel.findById(req.params.userId)
                 .then((user => res.render('user/edit', {user}))).catch(error => console.log(error))
         },
         // //update one user by id
         update: function(req,res){
-            UserModel.UserModel.findByIdAndUpdate(req.params.userId, req.body).then(() => {
+            Models.UserModel.findByIdAndUpdate(req.params.userId, req.body).then(() => {
                 res.send()
             })
         },
         // //find user by id and remove user
         delete: function(req,res){
-            UserModel.UserModel.findByIdAndDelete(req.params.userId).then((user) => {
+            Models.UserModel.findByIdAndDelete(req.params.userId).then((user) => {
                 res.json(user)
                 // res.redirect('/users').catch((error) => {
                 //     console.log(error)

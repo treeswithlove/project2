@@ -1,6 +1,6 @@
 //GreenItem model
 const Models = require('../models/schema')
-const UserModel = require('../models/schema')
+// const UserModel = require('../models/schema')
 
 
 
@@ -24,9 +24,10 @@ const GreenItemController = {
         create: function(req,res){
             const userId = req.params.userId;
             const newGreenItem = (req.body)
-            Models.UserModels.findById(userId)
-            .then((user) => {
-                user.where.push(newGreenItem)
+            Models.GreenItemModel.create()
+            .then((newGreenItem) => {
+                newGreenItem.userId = req.params.userId
+                console.log(newGreenItem)
             })
             .then((user) => {
                  res.redirect(`/user/${userId}`)

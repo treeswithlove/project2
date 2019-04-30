@@ -15,9 +15,9 @@ app.use(express.static(__dirname+"/public"));
 app.use(express.urlencoded());
 app.use(express.json())
 app.use(methodOverride('_method'))
-app.use('/api/user', userRoutes)
-app.use('/api/user/:userId/greenItem', greenItemRoutes)
-app.use('/api/user/:userId/greenItem/:greenItemId/location', locationRoutes)
+app.use('/user', userRoutes)
+app.use('/user/:userId/greenItem', greenItemRoutes)
+app.use('/user/:userId/greenItem/:greenItemId/location', locationRoutes)
 
 
 
